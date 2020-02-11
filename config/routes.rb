@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'welcome/login/:id', to: 'welcome#login', as: :login
 
+  resources :users, except: [:delete]
   resources :articles do
     member do
       post '/like', to: 'articles#like'

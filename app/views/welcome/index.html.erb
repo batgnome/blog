@@ -1,2 +1,20 @@
 <h1>Hello, Rails!</h1>
 <%= link_to 'My Blog', controller: 'articles' %>
+<h1>Listing Articles</h1>
+<table>
+  <tr>
+    <th>author</th>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Likes</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.author %></td>
+      <td><%= link_to 'Show', login_path(user) %></td>
+    </tr>
+  <% end %>
+</table>
+
