@@ -1,0 +1,19 @@
+<h1>Listing Users</h1>
+<%= link_to 'New user', new_user_path %>
+<table>
+  <tr>
+    <th>author</th>
+    <th colspan="2"></th>
+  </tr>
+  <% unless @users.nil? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.author %></td>
+        <td><%= link_to 'Show', login_path(user) %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <h2> No users </h2>
+  <% end %>
+</table>
