@@ -1,8 +1,11 @@
 <h1>Listing Users</h1>
+<p>Number of users: <%= @users.count %></p>
 <%= link_to 'New user', new_user_path %>
+
 <table>
   <tr>
-    <th>author</th>
+    <th>users</th>
+
     <th colspan="2"></th>
   </tr>
   <% unless @users.nil? %>
@@ -11,9 +14,13 @@
         <td><%= user.author %></td>
         <td><%= link_to 'Show', login_path(user) %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user_path(user),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   <% else %>
     <h2> No users </h2>
   <% end %>
 </table>
+<%= link_to 'Home', controller: 'welcome' %>
