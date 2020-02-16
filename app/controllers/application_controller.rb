@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :set_user
 
   def set_user
-    if session[1]
-      @current_user = User.find(session[1])
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
     end
   end
 end
