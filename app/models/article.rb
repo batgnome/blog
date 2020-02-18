@@ -11,4 +11,9 @@ class Article < ApplicationRecord
   def like_count
     self.likes.count
   end
+
+  def author? user
+    user == self.user
+  end
+
 end

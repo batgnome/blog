@@ -1,13 +1,12 @@
 class ArticlesController < ApplicationController
-
-  #http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  before_action :set_article, only: [:show,:edit,:like,:update,:destroy]
+  before_action :protect_article, only: [:edit, :update, :destroy]
 
   def index
     @article = Article.all.sort_by { |art| -art.like_count }
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -15,11 +14,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def like
-    @article = Article.find(params[:id])
     @article.add_like
     redirect_to request.referrer
   end
@@ -35,7 +32,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
 
     if @article.update(article_params)
       redirect_to @article
@@ -45,7 +41,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
 
     redirect_to articles_path
@@ -55,4 +50,15 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title,:text)
   end
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def protect_article
+    unless @article.author? @current_user
+      redirect_to @article
+    end
+  end
+
 end

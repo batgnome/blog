@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'welcome/login/:id', to: 'welcome#login', as: :login
-  get 'users/show_articles/:id', to: 'users#show_users', as: :show_users
 
   resources :users, except: [:delete]
   resources :articles do

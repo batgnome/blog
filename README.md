@@ -4,7 +4,9 @@ todo(cause paul told me too)
   [X] show
   [X] edit
   [X] create
-  [ ] fix making new article with login id
-  [ ] change design of the actions
-  [ ] make way to see individual users articles
+  [X] fix making new article with login id
+  [X] change design of the actions
+  [X] make way to see individual users articles
   [ ] make comments show which user left comment
+  [ ] make association between users and comments
+  [ ] when you create a comment it saves the user thats logged in
