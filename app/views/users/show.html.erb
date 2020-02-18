@@ -1,8 +1,28 @@
-<p>
-  <strong>Title:</strong>
-  <%= @user.author %>
-</p>
+<h1>Listing Articles by user</h1>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'New article', new_article_path %>
+<table>
+  <tr>
+    <th>author</th>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Likes</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @user.articles.each do |article| %>
+    <tr>
+      <td><%= article.user.author %></td>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= article.like_count %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      <td><%= link_to 'Destroy', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Like', like_article_path(article), method: :post %></td>
+    </tr>
+  <% end %>
+</table>
 <%= link_to 'Home', controller: 'welcome' %>

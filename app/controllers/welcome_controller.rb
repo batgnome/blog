@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
   def login
     @user = User.find(params[:id])
     session[:user_id ] = @user.id
-    redirect_to articles_path
+    redirect_to users_path
   end
 
 end
