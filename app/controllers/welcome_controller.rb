@@ -9,4 +9,9 @@ class WelcomeController < ApplicationController
     redirect_to users_path
   end
 
+  def logout
+    session.delete :user_id
+    redirect_to users_path
+  end
+
 end
